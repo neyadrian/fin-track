@@ -12,4 +12,16 @@ public class TransacaoMensal extends Transacao {
 
         this.mesesRecorrencia = mesesRecorrencia;
     }
+
+    public int getMesesRecorrencia() {
+        return mesesRecorrencia;
+    }
+
+    public void setMesesRecorrencia(int mesesRecorrencia) {
+
+        if(mesesRecorrencia <= 0) {
+            throw new IllegalArgumentException("Meses de recorrência deve ser maior que zero");
+        }
+        this.mesesRecorrencia = mesesRecorrencia;
+    }
 }
