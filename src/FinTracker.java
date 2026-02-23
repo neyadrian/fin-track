@@ -29,4 +29,14 @@ public class FinTracker {
         System.out.println("=====================================\n");
     }
 
+    public void removerTransacao(int indice) {
+        if (indice < 0 || indice >= transacoes.size()) {
+            System.out.println("❌ Índice inválido!");
+            return;
+        }
+
+        Transacao removida = transacoes.remove(indice);
+        System.out.println("✓ Transação removida: " + removida);
+    }
+
 }
