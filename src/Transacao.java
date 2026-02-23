@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Transacao {
 
@@ -52,5 +53,12 @@ public class Transacao {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return String.format("[%s] %s - R$ %.2f (%s)",
+                data.format(formatter), descricao, valor, tipo);
     }
 }
