@@ -31,12 +31,48 @@ public class FinTracker {
 
     public void removerTransacao(int indice) {
         if (indice < 0 || indice >= transacoes.size()) {
-            System.out.println("❌ Índice inválido!");
+            System.out.println("Índice inválido!");
             return;
         }
 
         Transacao removida = transacoes.remove(indice);
-        System.out.println("✓ Transação removida: " + removida);
+        System.out.println("Transação removida: " + removida);
     }
 
+    public double calcularSaldoTotal() {
+        double saldo = 0;
+
+        for (Transacao transacao : transacoes) {
+            if (transacao.getTipo().equals("RECEITA")) {
+                saldo += transacao.getValor();
+            } else if (transacao.getTipo().equals("DESPESA")) {
+                saldo -= transacao.getValor();
+            }
+        }
+
+        return saldo;
+    }
+
+    public void exibirSaldoAtual() {
+        double saldo = calcularSaldoTotal();
+        System.out.println("\n===== SALDO ATUAL =====");
+        System.out.printf("R$ %.2f%n", saldo);
+
+        if (saldo > 0) {
+            System.out.println("Você está no positivo!");
+        } else if (saldo < 0) {
+            System.out.println("Você está no negativo!");
+        } else {
+            System.out.println("Seu saldo está zerado.");
+        }
+        System.out.println("=======================\n");
+    }
+
+    public int getTotalTransacoes() {
+        return transacoes.size();
+    }
+
+    public List<Transacao> getTransacoes() {
+        return new ArrayList<>(transacoes);
+    }
 }
