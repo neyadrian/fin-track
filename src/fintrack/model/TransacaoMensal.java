@@ -2,16 +2,10 @@ package fintrack.model;
 
 import java.time.LocalDate;
 
-/**
- * Classe que representa uma transação mensal recorrente (ex: salário fixo, aluguel)
- */
 public class TransacaoMensal extends Transacao {
     private int mesRecorrencia;
     private boolean ativa;
 
-    /**
-     * Construtor para criar uma transação mensal recorrente
-     */
     public TransacaoMensal(String descricao, double valor, LocalDate data,
                           TipoTransacao tipo, int mesRecorrencia) {
         super(descricao, valor, data, tipo);

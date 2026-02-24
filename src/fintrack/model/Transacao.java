@@ -3,9 +3,6 @@ package fintrack.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Classe base para representar uma transação financeira
- */
 public class Transacao {
     private static int proximoId = 1;
     private int id;
@@ -29,9 +26,6 @@ public class Transacao {
         }
     }
 
-    /**
-     * Construtor padrão para criar uma transação
-     */
     public Transacao(String descricao, double valor, LocalDate data, TipoTransacao tipo) {
         this.id = proximoId++;
         this.descricao = descricao;
@@ -40,7 +34,6 @@ public class Transacao {
         this.tipo = tipo;
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }

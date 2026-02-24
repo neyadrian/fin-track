@@ -7,9 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe controladora que gerencia as operações com transações
- */
 public class FinTracker {
     private List<Transacao> transacoes;
 
@@ -17,9 +14,6 @@ public class FinTracker {
         this.transacoes = new ArrayList<>();
     }
 
-    /**
-     * Adiciona uma nova transação simples
-     */
     public void adicionarTransacao(String descricao, double valor, LocalDate data, TipoTransacao tipo) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição não pode estar vazia!");
@@ -35,9 +29,6 @@ public class FinTracker {
         transacoes.add(transacao);
     }
 
-    /**
-     * Adiciona uma transação mensal recorrente
-     */
     public void adicionarTransacaoMensal(String descricao, double valor, LocalDate data,
                                         TipoTransacao tipo, int mesRecorrencia) {
         if (descricao == null || descricao.trim().isEmpty()) {
@@ -57,30 +48,18 @@ public class FinTracker {
         transacoes.add(transacao);
     }
 
-    /**
-     * Lista todas as transações cadastradas
-     */
     public List<Transacao> listarTransacoes() {
         return new ArrayList<>(transacoes);
     }
 
-    /**
-     * Retorna o número total de transações
-     */
     public int getTotalTransacoes() {
         return transacoes.size();
     }
 
-    /**
-     * Remove uma transação pelo ID
-     */
     public boolean removerTransacao(int id) {
         return transacoes.removeIf(t -> t.getId() == id);
     }
 
-    /**
-     * Calcula o saldo total (receitas - despesas)
-     */
     public double calcularSaldoTotal() {
         double saldo = 0;
         for (Transacao t : transacoes) {
@@ -93,9 +72,6 @@ public class FinTracker {
         return saldo;
     }
 
-    /**
-     * Calcula o total de receitas
-     */
     public double calcularTotalReceitas() {
         return transacoes.stream()
                 .filter(t -> t.getTipo() == TipoTransacao.RECEITA)
@@ -103,9 +79,6 @@ public class FinTracker {
                 .sum();
     }
 
-    /**
-     * Calcula o total de despesas
-     */
     public double calcularTotalDespesas() {
         return transacoes.stream()
                 .filter(t -> t.getTipo() == TipoTransacao.DESPESA)
@@ -113,9 +86,6 @@ public class FinTracker {
                 .sum();
     }
 
-    /**
-     * Obtém uma transação pelo ID
-     */
     public Transacao obterTransacaoPorId(int id) {
         return transacoes.stream()
                 .filter(t -> t.getId() == id)
@@ -123,9 +93,6 @@ public class FinTracker {
                 .orElse(null);
     }
 
-    /**
-     * Limpa todas as transações (cuidado com este método!)
-     */
     public void limparTransacoes() {
         transacoes.clear();
     }

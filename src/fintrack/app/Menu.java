@@ -8,9 +8,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-/**
- * Classe principal da aplicação FinTrack com menu interativo
- */
 public class Menu {
     private FinTracker finTracker;
     private Scanner scanner;
@@ -22,9 +19,6 @@ public class Menu {
         this.rodando = true;
     }
 
-    /**
-     * Inicia a aplicação e o loop do menu
-     */
     public void iniciar() {
         System.out.println("\n" + Formatador.criarCabecalho("FINTRACK - SEU CONTROLE FINANCEIRO"));
         System.out.println("\nBem-vindo ao FinTrack! \n");
@@ -37,9 +31,6 @@ public class Menu {
         encerrar();
     }
 
-    /**
-     * Exibe o menu principal
-     */
     private void exibirMenu() {
         System.out.println("\n" + Formatador.linha(40));
         System.out.println("1. Adicionar nova transação");
@@ -52,9 +43,6 @@ public class Menu {
         System.out.print("Escolha uma opção: ");
     }
 
-    /**
-     * Executa a opção selecionada pelo usuário
-     */
     private void executarOpcao() {
         try {
             int opcao = lerInteiro();
@@ -79,16 +67,13 @@ public class Menu {
                     rodando = false;
                     break;
                 default:
-                    System.out.println("\n❌ Opção inválida! Tente novamente.");
+                    System.out.println("\nOpção inválida! Tente novamente.");
             }
         } catch (EntradaInvalidaException e) {
-            System.out.println("\n❌ Erro: " + e.getMessage());
+            System.out.println("\nErro: " + e.getMessage());
         }
     }
 
-    /**
-     * Adiciona uma nova transação simples
-     */
     private void adicionarTransacao() throws EntradaInvalidaException {
         System.out.println("\n" + Formatador.linha(40));
         System.out.println("ADICIONAR NOVA TRANSAÇÃO");
@@ -143,9 +128,6 @@ public class Menu {
         }
     }
 
-    /**
-     * Adiciona uma transação mensal recorrente
-     */
     private void adicionarTransacaoMensal() throws EntradaInvalidaException {
         System.out.println("\n" + Formatador.linha(40));
         System.out.println("ADICIONAR TRANSAÇÃO MENSAL (RECORRENTE)");
@@ -211,9 +193,6 @@ public class Menu {
         }
     }
 
-    /**
-     * Lista todas as transações cadastradas
-     */
     private void listarTransacoes() {
         System.out.println("\n" + Formatador.linha(50));
         System.out.println("LISTA DE TRANSAÇÕES");
@@ -231,9 +210,6 @@ public class Menu {
         System.out.println();
     }
 
-    /**
-     * Exibe o saldo atual com detalhamento
-     */
     private void exibirSaldo() {
         System.out.println("\n" + Formatador.linha(50));
         System.out.println("SALDO ATUAL");
@@ -255,9 +231,6 @@ public class Menu {
         System.out.println();
     }
 
-    /**
-     * Remove uma transação pelo ID
-     */
     private void removerTransacao() throws EntradaInvalidaException {
         if (finTracker.getTotalTransacoes() == 0) {
             System.out.println("\n📋 Nenhuma transação cadastrada para remover.\n");
@@ -274,15 +247,12 @@ public class Menu {
         int id = lerInteiro();
 
         if (finTracker.removerTransacao(id)) {
-            System.out.println("\n✓ Transação removida com sucesso!");
+            System.out.println("\nTransação removida com sucesso!");
         } else {
-            System.out.println("\n❌ Transação com ID " + id + " não encontrada!");
+            System.out.println("\nTransação com ID " + id + " não encontrada!");
         }
     }
 
-    /**
-     * Método auxiliar para ler um inteiro com tratamento de erro
-     */
     private int lerInteiro() throws EntradaInvalidaException {
         try {
             String entrada = scanner.nextLine().trim();
@@ -292,13 +262,10 @@ public class Menu {
         }
     }
 
-    /**
-     * Encerra a aplicação
-     */
     private void encerrar() {
         scanner.close();
         System.out.println("\n" + Formatador.criarCabecalho("OBRIGADO POR USAR FINTRACK!"));
-        System.out.println("\nAté logo! 👋\n");
+        System.out.println("\nAté logo! \n");
     }
 }
 
